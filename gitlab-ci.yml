@@ -35,8 +35,8 @@ plan:
       fi
   artifacts:
     paths:
-      - $WORK_DIR/$TF_PLAN
-    expire_in: 3 days
+      - "$WORK_DIR/$TF_PLAN"
+    expire_in: '3 days'
 
 apply:
   stage: deploy
