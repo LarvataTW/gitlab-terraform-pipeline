@@ -20,7 +20,7 @@ before_script:
     if [ "$WORK_DIR" != "" ];
     then
       cd $WORK_DIR;
-      terraform init
+      terraform init -input=false
     fi
 
 plan:
@@ -30,7 +30,7 @@ plan:
       if [ "$WORK_DIR" != "" ];
       then
         terraform show;
-        terraform plan
+        terraform plan -out='gitlab-tfplan' -input=false;
       fi
 
 apply:
@@ -38,7 +38,7 @@ apply:
   when: manual
   script:
     - |
-      if [ "$WORK_DIR" != "" ];
+      if [ -f 'gitlab-tfplan' ];
       then
-        terraform plan
+        terraform apply -input=false 'gitlab-tfplan'
       fi
