@@ -11,7 +11,7 @@ stages:
 
 before_script:
   - apk add bash curl
-  - source < (curl -s $BASE_URL/env.sh)
+  - source <(curl -s $BASE_URL/env.sh)
   - |
     if [ "$WORK_DIR" != "" ];
     then
