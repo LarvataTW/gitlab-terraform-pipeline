@@ -43,6 +43,9 @@ apply:
   when: manual
   script:
     - |
-      terraform apply -input=false $TF_PLAN
+      if [ -f $TF_PLAN ];
+      then
+        terraform apply -input=false $TF_PLAN
+      fi
   dependencies:
     - plan
