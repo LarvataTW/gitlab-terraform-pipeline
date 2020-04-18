@@ -34,9 +34,9 @@ plan:
         terraform plan -out=$TF_PLAN -input=false;
       fi
   artifacts:
-  paths:
-    - $WORK_DIR/$TF_PLAN
-  expire_in: 3 days
+    paths:
+      - $WORK_DIR/$TF_PLAN
+    expire_in: 3 days
 
 apply:
   stage: deploy
