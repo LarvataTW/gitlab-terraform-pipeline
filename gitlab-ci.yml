@@ -1,0 +1,40 @@
+image:
+  name: "hashicorp/terraform:0.12.24"
+  entrypoint: ["/bin/sh", "-c"]
+
+variables:
+  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master
+
+stages:
+  - check
+  - deploy
+
+before_script:
+  - apk add bash curl
+  - source < (curl -s $BASE_URL/env.sh)
+  - |
+    if [ "$WORK_DIR" != "" ];
+    then
+      cd $WORK_DIR;
+      terraform init
+    fi
+
+plan:
+  stage: check
+  script:
+    - |
+      if [ "$WORK_DIR" != "" ];
+      then
+        terraform show;
+        terraform plan
+      fi
+
+apply:
+  stage: deploy
+  when: manual
+  script:
+    - |
+      if [ "$WORK_DIR" != "" ];
+      then
+        terraform plan
+      fi
