@@ -7,7 +7,7 @@ variables:
   AWS_SECRET_ACCESS_KEY: "secret key"
   AWS_DEFAULT_REGION: "ap-northeast-1"
   BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master
-  TF_PLAN: gitlab-tfplan
+  TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
 
 stages:
   - check
@@ -35,7 +35,7 @@ plan:
       fi
   artifacts:
     paths:
-      - "$WORK_DIR/$TF_PLAN"
+      - "$TF_PLAN"
     expire_in: '3 days'
 
 apply:
