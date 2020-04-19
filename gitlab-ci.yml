@@ -8,7 +8,7 @@ variables:
   AWS_DEFAULT_REGION: "ap-northeast-1"
   BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
-  TF_IN_AUTOMATION: true
+  TF_IN_AUTOMATION: "true"
 
 stages:
   - check
