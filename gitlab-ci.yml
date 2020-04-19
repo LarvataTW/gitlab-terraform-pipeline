@@ -43,8 +43,7 @@ apply:
   stage: deploy
   when: manual
   only:
-    refs:
-      - master
+    - master
   script:
     - |
       if [ -f $TF_PLAN ];
