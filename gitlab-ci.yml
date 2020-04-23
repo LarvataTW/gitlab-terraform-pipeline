@@ -48,7 +48,8 @@ apply:
     - |
       if [ -f $TF_PLAN ];
       then
-        terraform apply -input=false $TF_PLAN
+        terraform apply -input=false $TF_PLAN;
+        terraform output
       fi
   dependencies:
     - plan
