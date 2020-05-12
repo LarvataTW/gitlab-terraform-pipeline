@@ -15,7 +15,7 @@ stages:
   - deploy
 
 before_script:
-  - apk add bash curl
+  - apk add bash curl git
   - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
@@ -31,6 +31,7 @@ plan:
     - |
       if [ "$WORK_DIR" != "" ];
       then
+        git show;
         terraform plan -out=$TF_PLAN -input=false;
       fi
   artifacts:
