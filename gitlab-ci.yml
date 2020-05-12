@@ -31,7 +31,6 @@ plan:
     - |
       if [ "$WORK_DIR" != "" ];
       then
-        terraform show;
         terraform plan -out=$TF_PLAN -input=false;
       fi
   artifacts:
@@ -49,6 +48,7 @@ apply:
       if [ -f $TF_PLAN ];
       then
         terraform apply -input=false $TF_PLAN;
+        terraform show;
         terraform output
       fi
   dependencies:
