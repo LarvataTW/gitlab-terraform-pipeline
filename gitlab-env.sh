@@ -2,7 +2,7 @@
 
 export WORK_DIR=''
 
-for file in `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`;
+for file in `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA..$CI_COMMIT_BEFORE_SHA`;
 do
   f=`basename $file`
   if [[ "$f" == "main.tf" ]]
