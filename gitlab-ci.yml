@@ -1,5 +1,5 @@
 image:
-  name: "hashicorp/terraform:0.12.26"
+  name: "hashicorp/terraform:0.12.28"
   entrypoint: ["/bin/sh", "-c"]
 
 variables:
