@@ -6,7 +6,7 @@ variables:
   AWS_ACCESS_KEY_ID: "access key"
   AWS_SECRET_ACCESS_KEY: "secret key"
   AWS_DEFAULT_REGION: "ap-east-1"
-  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/develop
+  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
   TF_IN_AUTOMATION: "true"
 
@@ -22,19 +22,17 @@ before_script:
     if [ "$WORK_DIR" != "" ];
     then
       cd $WORK_DIR;
-      terragrunt init -input=false
+      terraform init -input=false
     fi
 
 plan:
   stage: check
-  only:
-    - develop
   script:
     - |
       if [ "$WORK_DIR" != "" ];
       then
         git show;
-        terragrunt plan -out=$TF_PLAN -input=false;
+        terraform plan -out=$TF_PLAN -input=false;
       fi
   artifacts:
     paths:
@@ -45,14 +43,14 @@ apply:
   stage: deploy
   when: manual
   only:
-    - develop
+    - master
   script:
     - |
       if [ -f $TF_PLAN ];
       then
-        terragrunt apply -input=false $TF_PLAN;
-        terragrunt show;
-        terragrunt output
+        terraform apply -input=false $TF_PLAN;
+        terraform show;
+        terraform output
       fi
   dependencies:
     - plan
