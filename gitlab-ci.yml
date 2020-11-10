@@ -22,9 +22,9 @@ before_script:
   - |
     if [ "$TF_TERRAGRUNT" = "true" ];
     then
-      export terragrunt=TERRAFORM
+      export TERRAFORM=terragrunt
     else
-      export terraform=TERRAFORM
+      export TERRAFORM=terraform
     fi
 
     if [ "$WORK_DIR" != "" ];
