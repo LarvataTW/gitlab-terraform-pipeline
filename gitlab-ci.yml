@@ -9,6 +9,7 @@ variables:
   BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/develop
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
   TF_IN_AUTOMATION: "true"
+  TF_TERRAGRUNT: "false"  
 
 stages:
   - check
@@ -19,10 +20,17 @@ before_script:
   - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
+    if [ "$TF_TERRAGRUNT" = "true" ];
+    then
+      export terragrunt=TERRAFORM
+    else
+      export terraform=TERRAFORM
+    fi
+
     if [ "$WORK_DIR" != "" ];
     then
       cd $WORK_DIR;
-      terragrunt init -input=false
+      $TERRAFORM init -input=false
     fi
 
 plan:
@@ -34,7 +42,7 @@ plan:
       if [ "$WORK_DIR" != "" ];
       then
         git show;
-        terragrunt plan -out=$TF_PLAN -input=false;
+        $TERRAFORM plan -out=$TF_PLAN -input=false;
       fi
   artifacts:
     paths:
@@ -50,9 +58,9 @@ apply:
     - |
       if [ -f $TF_PLAN ];
       then
-        terragrunt apply -input=false $TF_PLAN;
-        terragrunt show;
-        terragrunt output
+        $TERRAFORM apply -input=false $TF_PLAN;
+        $TERRAFORM show;
+        $TERRAFORM output
       fi
   dependencies:
     - plan
