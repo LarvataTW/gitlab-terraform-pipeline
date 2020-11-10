@@ -9,7 +9,7 @@ variables:
   BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/develop
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
   TF_IN_AUTOMATION: "true"
-  TF_TERRAGRUNT: "false"  
+  TF_TERRAGRUNT_ENABLED: "false"  
 
 stages:
   - check
@@ -20,7 +20,7 @@ before_script:
   - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
-    if [ "$TF_TERRAGRUNT" = "true" ];
+    if [ -f $TF_TERRAGRUNT_ENABLED ];
     then
       export TERRAFORM=terragrunt
     else
