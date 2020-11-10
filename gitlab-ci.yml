@@ -20,7 +20,7 @@ before_script:
   - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
-    if [ -f $TF_TERRAGRUNT_ENABLED ];
+    if [  $TF_TERRAGRUNT_ENABLED == "true" ];
     then
       export TERRAFORM=terragrunt
     else
@@ -30,7 +30,7 @@ before_script:
     if [ "$WORK_DIR" != "" ];
     then
       cd $WORK_DIR;
-      $TERRAFORM init -input=false
+      echo "33" ; $TERRAFORM init -input=false
     fi
 
 plan:
