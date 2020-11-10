@@ -37,6 +37,7 @@ plan:
   stage: check
   only:
     - master
+    - develop
   script:
     - |
       if [ "$WORK_DIR" != "" ];
@@ -54,6 +55,7 @@ apply:
   when: manual
   only:
     - master
+    - develop
   script:
     - |
       if [ -f $TF_PLAN ];
