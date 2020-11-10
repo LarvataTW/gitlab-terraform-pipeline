@@ -30,7 +30,7 @@ before_script:
     if [ "$WORK_DIR" != "" ];
     then
       cd $WORK_DIR;
-      echo "33" ; $TERRAFORM init -input=false
+      $TERRAFORM init -input=false
     fi
 
 plan:
