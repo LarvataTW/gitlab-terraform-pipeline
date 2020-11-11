@@ -6,7 +6,7 @@ variables:
   AWS_ACCESS_KEY_ID: "access key"
   AWS_SECRET_ACCESS_KEY: "secret key"
   AWS_DEFAULT_REGION: "ap-east-1"
-  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master
+  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/v1.0.1
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
   TF_IN_AUTOMATION: "true"
   TF_TERRAGRUNT_ENABLED: "false"  
