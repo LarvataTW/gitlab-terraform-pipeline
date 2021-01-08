@@ -17,7 +17,7 @@ stages:
 
 before_script:
   - apk add bash curl git
-  - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
+  - curl -L ${BASE_URL}/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
     if [ $TF_TERRAGRUNT_ENABLED == "true" ];
