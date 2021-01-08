@@ -6,10 +6,10 @@ variables:
   AWS_ACCESS_KEY_ID: "access key"
   AWS_SECRET_ACCESS_KEY: "secret key"
   AWS_DEFAULT_REGION: "ap-east-1"
-  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/v1.0.1
+  BASE_URL: https://raw.githubusercontent.com/LarvataTW/gitlab-terraform-pipeline/master/
   TF_PLAN: "$CI_PROJECT_DIR/gitlab-tfplan"
   TF_IN_AUTOMATION: "true"
-  TF_TERRAGRUNT_ENABLED: "false"  
+  TF_TERRAGRUNT_ENABLED: "false"
 
 stages:
   - check
@@ -20,7 +20,7 @@ before_script:
   - curl $BASE_URL/gitlab-env.sh -o gitlab-env.sh
   - source gitlab-env.sh
   - |
-    if [  $TF_TERRAGRUNT_ENABLED == "true" ];
+    if [ $TF_TERRAGRUNT_ENABLED == "true" ];
     then
       export TERRAFORM=terragrunt
     else
