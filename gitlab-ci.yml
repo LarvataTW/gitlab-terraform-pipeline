@@ -32,6 +32,8 @@ before_script:
       cd $WORK_DIR;
       $TERRAFORM init -input=false
     fi
+    
+    env
 
 plan:
   stage: check
