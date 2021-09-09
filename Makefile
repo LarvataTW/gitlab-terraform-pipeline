@@ -5,7 +5,7 @@ SHELL := /bin/bash
 MAKEFLAGS = --jobs=1
 
 # Terraform version
-TF_VERSION = 0.12.24
+TF_VERSION = 1.0.6
 
 .PHONY: docker
 docker: ## 模擬 Gitlab CI/CD 時的 container 環境
