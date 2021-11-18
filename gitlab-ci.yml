@@ -64,8 +64,6 @@ plan:
         git show;
         $TERRAFORM plan -out=$TF_PLAN -input=false;
       fi
-  dependencies:
-    - lint
   artifacts:
     paths:
       - "$TF_PLAN"
