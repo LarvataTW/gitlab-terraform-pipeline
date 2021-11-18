@@ -13,7 +13,6 @@ variables:
   CICD_APPLY_MODEL: "always"
 
 stages:
-  - lint
   - check
   - deploy
 
@@ -52,13 +51,6 @@ before_script:
     fi
 
     env
-    
-lint:
-  stage: lint
-  script:
-    - # TODO
-    - # https://pre-commit.com + https://github.com/terraform-linters/tflint
-    - # https://github.com/aquasecurity/tfsec
 
 plan:
   stage: check
